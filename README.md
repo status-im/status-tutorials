@@ -1,2 +1,2 @@
-# status-affiliate
-Status affiliate program website
+## Status Tutorial
+Status tutorial landing page
