@@ -14,7 +14,10 @@ const INITIAL_STATE: IHomePage.IStateProps = {
         url: "",
     },
     embarkData: {
-        data: ""
+        data: []
+    },
+    nimbusData: {
+        data: []
     }
 };
 

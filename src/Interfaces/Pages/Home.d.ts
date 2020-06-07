@@ -17,8 +17,11 @@ declare namespace IHomePage {
             url: string;
         };
         embarkData: {
-            data: string;
-        }
+            data: Array<any>;
+        };
+        nimbusData: {
+            data: Array<any>;
+        };      
     }
 
     namespace Actions {
@@ -33,9 +36,6 @@ declare namespace IHomePage {
         export interface EmbarkData {
             data: {};
         }
-
-        export interface IGetApodResponse
-            extends PlanetaryModel.GetApodResponse {}
     }
 }
 

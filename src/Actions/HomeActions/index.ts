@@ -11,30 +11,67 @@ import { PlanetaryService } from "@Services";
 import { IHomePage } from "@Interfaces";
 // #endregion Interface Imports
 
+import fetch from 'isomorphic-unfetch'
+
 var parseString = require('xml2js').parseString;
 
 const CORS_PROXY = "https://cors-fix.status.im/";
 
-const embarkBlog = "https://framework.embarklabs.io/atom.xml";
+const embarkBlog = "https://blog.embarklabs.io/atom.xml";
+
+const nimbusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:nim";
 
 let embarkData = '';
-let parsedData:any = [];
+let parsedEmbarkData:any = [];
 
-export const FetchEmbark = () => {
-    fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
+let nimbusData = '';
+let parsedNimbusData:any = [];
+
+interface Entry {
+    title: string;
+    link: string;
+    published: string;
+    url: string;
+    summary: string;
+}
+
+export const FetchEmbark = async () => {
+    await fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
     .then(response => response.text())
     .then(data => {
         embarkData = data
         parseString(embarkData, function (err:any, result:any) {
-            const entries = result.feed.entry;
+            const entries: Array<any> = result.feed.entry;
             entries.forEach(entry => {
                 const category = entry.category[0]['$']['term']
                 if (category === 'tutorials') {
-                    parsedData.push(entry)
+                    const postData: Entry = {}
+                    postData.title = entry.title[0];
+                    postData.link = entry.link[0]['$']['href'];
+                    postData.published = entry.published[0];
+                    postData.url = entry.id[0];
+                    postData.summary = entry.summary[0]._;
+                    parsedEmbarkData.push(postData)
                 }
             })
         });
-        console.log(parsedData)
+    });
+}
+
+export const FetchNimbus = async () => {
+    await fetch(`${CORS_PROXY}`+ `${nimbusBlog}`)
+    .then(response => response.json())
+    .then(data => {
+        nimbusData = data.posts
+        nimbusData.forEach(entry => {
+            const postData = {}
+            postData.title = entry.title;
+            postData.published_at = entry.published_at;
+            postData.excerpt = entry.excerpt;
+            postData.feature_image = entry.feature_image;
+            postData.url = entry.url;
+            parsedNimbusData.push(postData);
+        })
     });
 }
 
@@ -48,31 +85,30 @@ export const HomeActions = {
         type: ActionConsts.Home.ResetReducer,
     }),
 
-    // GetApod: (payload: IHomePage.Actions.IGetApodPayload) => async (
-    //     dispatch: Dispatch
-    // ) => {
-    //     const result = await PlanetaryService.GetPlanetImage({
-    //         params: payload.data,
-    //     });
-
-    //     dispatch({
-    //         payload: {
-    //             image: result,
-    //         },
-    //         type: ActionConsts.Home.SetReducer,
-    //     });
-    // },
-
     GetEmbarkData: (payload: IHomePage.Actions.EmbarkData) => async (
         dispatch: Dispatch
     ) => {
         await FetchEmbark();
         dispatch({
             payload: {
-                embarkData: embarkData,
+                embarkData: parsedEmbarkData,
             },
             type: ActionConsts.Home.SetReducer,
         });
+        parsedEmbarkData = []
+    },
+
+    GetNimbusData: (payload: IHomePage.Actions.EmbarkData) => async (
+        dispatch: Dispatch
+    ) => {
+        await FetchNimbus();
+        dispatch({
+            payload: {
+                nimbusData: parsedNimbusData,
+            },
+            type: ActionConsts.Home.SetReducer,
+        });
+        parsedNimbusData = []
     },
 
 };
