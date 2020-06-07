@@ -1,5 +1,5 @@
 // #region Global Imports
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { NextPage } from "next";
 import { useSelector, useDispatch } from "react-redux";
 // #endregion Global Imports
@@ -33,25 +33,33 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
     const home = useSelector((state: IStore) => state.home);
     const dispatch = useDispatch();
 
-    const renderLocaleButtons = (activeLanguage: string) =>
-        ["en", "es", "tr"].map(lang => (
-            <LocaleButton
-                key={lang}
-                lang={lang}
-                isActive={activeLanguage === lang}
-                onClick={() => i18n.changeLanguage(lang)}
-            />
-        ));
+    const [embarkData, getEmbarkData] = useState<string>('');
 
-    
+    const CORS_PROXY = "https://cors-fix.status.im/";
 
-    return (
+    const embarkBlog = "https://framework.embarklabs.io/atom.xml";
+
+    const getEmarkData = () => {
+        fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
+        .then(response => response.text())
+        .then(data => {
+            getEmbarkData(data);
+        });
+    }
+
+    useEffect(() => {
+        getEmarkData()
+    }, [])
+
+
+
+    return embarkData ? (
         <Container>
             <div>
                 hi
             </div>
         </Container>
-    );
+    ) : '';
 };
 
 Home.getInitialProps = async (
