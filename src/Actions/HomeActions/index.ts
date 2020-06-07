@@ -11,6 +11,20 @@ import { PlanetaryService } from "@Services";
 import { IHomePage } from "@Interfaces";
 // #endregion Interface Imports
 
+const CORS_PROXY = "https://cors-fix.status.im/";
+
+const embarkBlog = "https://framework.embarklabs.io/atom.xml";
+
+let embarkData = '';
+
+export const FetchEmbark = () => {
+    fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
+    .then(response => response.text())
+    .then(data => {
+        embarkData = data
+    });
+}
+
 export const HomeActions = {
     Map: (payload: {}) => ({
         payload,
@@ -21,18 +35,32 @@ export const HomeActions = {
         type: ActionConsts.Home.ResetReducer,
     }),
 
-    GetApod: (payload: IHomePage.Actions.IGetApodPayload) => async (
+    // GetApod: (payload: IHomePage.Actions.IGetApodPayload) => async (
+    //     dispatch: Dispatch
+    // ) => {
+    //     const result = await PlanetaryService.GetPlanetImage({
+    //         params: payload.data,
+    //     });
+
+    //     dispatch({
+    //         payload: {
+    //             image: result,
+    //         },
+    //         type: ActionConsts.Home.SetReducer,
+    //     });
+    // },
+
+    GetEmbarkData: (payload: IHomePage.Actions.EmbarkData) => async (
         dispatch: Dispatch
     ) => {
-        const result = await PlanetaryService.GetPlanetImage({
-            params: payload.params,
-        });
-
+        await FetchEmbark();
+        console.log(embarkData)
         dispatch({
             payload: {
-                image: result,
+                embarkData: embarkData,
             },
             type: ActionConsts.Home.SetReducer,
         });
     },
+
 };

@@ -16,6 +16,9 @@ declare namespace IHomePage {
         image: {
             url: string;
         };
+        embarkData: {
+            data: string;
+        }
     }
 
     namespace Actions {
@@ -25,6 +28,10 @@ declare namespace IHomePage {
 
         export interface IGetApodPayload extends PlanetaryModel.GetApodPayload {
             params: {};
+        }
+
+        export interface EmbarkData {
+            data: {};
         }
 
         export interface IGetApodResponse

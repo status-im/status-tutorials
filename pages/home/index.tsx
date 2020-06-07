@@ -18,7 +18,7 @@ import {
     ApodButton,
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
-import { HomeActions } from "@Actions";
+import { HomeActions, FetchEmbark } from "@Actions";
 import { Heading, LocaleButton } from "@Components";
 // #endregion Local Imports
 
@@ -35,39 +35,39 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
 
     const [embarkData, getEmbarkData] = useState<string>('');
 
-    const CORS_PROXY = "https://cors-fix.status.im/";
+    // const CORS_PROXY = "https://cors-fix.status.im/";
 
-    const embarkBlog = "https://framework.embarklabs.io/atom.xml";
+    // const embarkBlog = "https://framework.embarklabs.io/atom.xml";
 
-    const getEmarkData = () => {
-        fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
-        .then(response => response.text())
-        .then(data => {
-            getEmbarkData(data);
-        });
-    }
+    // const getEmarkData = () => {
+    //     fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         getEmbarkData(data);
+    //     });
+    // }
 
-    useEffect(() => {
-        getEmarkData()
-    }, [])
+    // useEffect(() => {
+    //     getEmarkData()
+    // }, [])
 
+    console.log(home)
 
-
-    return embarkData ? (
+    return (
         <Container>
             <div>
                 hi
             </div>
         </Container>
-    ) : '';
+    );
 };
 
 Home.getInitialProps = async (
     ctx: ReduxNextPageContext
 ): Promise<IHomePage.InitialProps> => {
     await ctx.store.dispatch(
-        HomeActions.GetApod({
-            params: { hd: true },
+        HomeActions.GetEmbarkData({
+            data: { },
         })
     );
     return { namespacesRequired: ["common"] };

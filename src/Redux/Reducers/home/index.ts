@@ -13,6 +13,9 @@ const INITIAL_STATE: IHomePage.IStateProps = {
     image: {
         url: "",
     },
+    embarkData: {
+        data: ""
+    }
 };
 
 type IMapPayload = IHomePage.Actions.IMapPayload;
