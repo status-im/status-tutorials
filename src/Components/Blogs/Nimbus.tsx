@@ -12,9 +12,9 @@ const Nimbus = () => {
         <>
             <div>Nimbus</div>
             <div>
-                {nimbusData.map(data => (
+                {nimbusData.map((data: { url: string | undefined; title: React.ReactNode; }) => (
                     <a href={data.url}><div>
-                        {data.title}
+                    {data.title}
                     </div></a>
                 ))}
             </div>

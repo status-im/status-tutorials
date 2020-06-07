@@ -12,7 +12,7 @@ const Embark = () => {
         <>
             <div>Embark</div>
             <div>
-                {embarkData.map(data => (
+                {embarkData.map((data: { url: string | undefined; title: React.ReactNode; }) => (
                     <a href={data.url}><div>
                     {data.title}
                     </div></a>

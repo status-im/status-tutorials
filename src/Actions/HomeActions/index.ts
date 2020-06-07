@@ -21,18 +21,25 @@ const embarkBlog = "https://blog.embarklabs.io/atom.xml";
 
 const nimbusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:nim";
 
-let embarkData = '';
+let embarkData: any = '';
 let parsedEmbarkData:any = [];
 
-let nimbusData = '';
+let nimbusData: any = '';
 let parsedNimbusData:any = [];
 
-interface Entry {
+interface EmbarkEntry {
     title: string;
-    link: string;
     published: string;
     url: string;
     summary: string;
+}
+
+interface NimbusEntry {
+    title: string;
+    published_at: string;
+    url: string;
+    excerpt: string;
+    feature_image: string;
 }
 
 export const FetchEmbark = async () => {
@@ -45,15 +52,15 @@ export const FetchEmbark = async () => {
             entries.forEach(entry => {
                 const category = entry.category[0]['$']['term']
                 if (category === 'tutorials') {
-                    const postData: Entry = {}
+                    const postData: any = {}
                     postData.title = entry.title[0];
-                    postData.link = entry.link[0]['$']['href'];
                     postData.published = entry.published[0];
                     postData.url = entry.id[0];
                     postData.summary = entry.summary[0]._;
                     parsedEmbarkData.push(postData)
                 }
             })
+            console.log(parsedEmbarkData)
         });
     });
 }
@@ -63,8 +70,8 @@ export const FetchNimbus = async () => {
     .then(response => response.json())
     .then(data => {
         nimbusData = data.posts
-        nimbusData.forEach(entry => {
-            const postData = {}
+        nimbusData.forEach((entry: { title: any; published_at: any; excerpt: any; feature_image: any; url: any; }) => {
+            const postData: any = {}
             postData.title = entry.title;
             postData.published_at = entry.published_at;
             postData.excerpt = entry.excerpt;
