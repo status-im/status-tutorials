@@ -11,17 +11,30 @@ import { PlanetaryService } from "@Services";
 import { IHomePage } from "@Interfaces";
 // #endregion Interface Imports
 
+var parseString = require('xml2js').parseString;
+
 const CORS_PROXY = "https://cors-fix.status.im/";
 
 const embarkBlog = "https://framework.embarklabs.io/atom.xml";
 
 let embarkData = '';
+let parsedData:any = [];
 
 export const FetchEmbark = () => {
     fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
     .then(response => response.text())
     .then(data => {
         embarkData = data
+        parseString(embarkData, function (err:any, result:any) {
+            const entries = result.feed.entry;
+            entries.forEach(entry => {
+                const category = entry.category[0]['$']['term']
+                if (category === 'tutorials') {
+                    parsedData.push(entry)
+                }
+            })
+        });
+        console.log(parsedData)
     });
 }
 
@@ -54,7 +67,6 @@ export const HomeActions = {
         dispatch: Dispatch
     ) => {
         await FetchEmbark();
-        console.log(embarkData)
         dispatch({
             payload: {
                 embarkData: embarkData,
