@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { IStore } from "@Redux/IStore";
 
@@ -13,18 +13,25 @@ const Nimbus = () => {
     
     return loadedAll ? (
         <>
-            <div>Nimbus</div>
-            <div>
-                {nimbusData.map((data: { url: string | undefined; title: React.ReactNode; }, i: any) => (
-                    <div key={i}>
-                        <a href={data.url}>
-                            <div>
-                                {data.title}
-                            </div>
-                        </a>
+            <section className="news-list">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <ul>
+                                {nimbusData.map((data: { url: string | undefined; title: string | undefined; published_at: string | undefined; summary: string | undefined; }, i: any) => (
+                                    <li key={i}>
+                                        <div className="post">
+                                            <div className="meta"><time>{data.published_at}</time> / <a href="#">Nimbus</a></div>
+                                            <h4><a href={data.url}>{data.title}</a></h4>
+                                            <div className="author">{data.summary}</div>
+                                        </div>                                    
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
-                ))}
-            </div>
+                </div>
+            </section>
         </>
     ) : null
 }
