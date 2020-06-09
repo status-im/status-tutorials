@@ -4,7 +4,6 @@ import { Dispatch } from "redux";
 
 // #region Local Imports
 import { ActionConsts } from "@Definitions";
-import { PlanetaryService } from "@Services";
 // #endregion Local Imports
 
 // #region Interface Imports
@@ -27,21 +26,6 @@ let parsedEmbarkData:any = [];
 
 let nimbusData: any = '';
 let parsedNimbusData:any = [];
-
-interface EmbarkEntry {
-    title: string;
-    published: string;
-    url: string;
-    summary: string;
-}
-
-interface NimbusEntry {
-    title: string;
-    published_at: string;
-    url: string;
-    excerpt: string;
-    feature_image: string;
-}
 
 export const FetchEmbark = async () => {
     await fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
@@ -98,7 +82,7 @@ export const FetchNimbus = async () => {
     .then(response => response.json())
     .then(data => {
         nimbusData = data.posts
-        nimbusData.forEach((entry: { title: any; published_at: any; excerpt: any; feature_image: any; url: any; }) => {
+        nimbusData.forEach((entry: { title: string; published_at: string; excerpt: string; feature_image: string; url: string; }) => {
             const postData: any = {}
             postData.title = entry.title;
             postData.published_at = entry.published_at;
@@ -145,5 +129,18 @@ export const HomeActions = {
         });
         parsedNimbusData = []
     },
+
+    Active: (activeIndex: any) => async (
+        dispatch: Dispatch
+    ) => {
+        console.log('hi')
+        console.log(activeIndex)
+        await dispatch({
+            payload: {
+                active: activeIndex,
+            },
+            type: ActionConsts.Home.SetReducer,
+        });
+    }
 
 };

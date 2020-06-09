@@ -1,20 +1,28 @@
-// #region Global Imports
 import React, { useState } from "react";
-// #endregion Global Imports
-
-// #region Local Imports
 import "./style.scss";
-// #endregion Local Imports
-
-// #region Interface Imports
 import { IHeading } from "./Heading";
-// #endregion Interface Imports
+import { useDispatch } from "react-redux";
+import { HomeActions } from "@Actions";
 
 const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
 
-    const [active, setActive] = useState<Number>(0);
+    const [nowActive, setNowActive] = useState<Number>(0);
+    const dispatch = useDispatch();
 
+    const getEmbark = () => {
+        setNowActive(0)
+        dispatch(
+            HomeActions.Active(nowActive)
+        );
+    }
 
+    const getNimbus = () => {
+        setNowActive(1)
+        dispatch(
+            HomeActions.Active(nowActive)
+        );
+    }
+ 
     return (
         <section className="intro intro-news">
             <div className="container">
@@ -26,8 +34,8 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
                                 The Status Network Tutorial Archive
                             </h3>
                             <ul className="filters">
-                                <li><a href="#" className={active === 0 ? "active" : ''} onClick={() => setActive(0)}>Embark</a></li>
-                                <li><a href="#" className={active === 1 ? "active" : ''} onClick={() => setActive(1)}>Nimbus</a></li>
+                                <li key="0"><a href="#" className={nowActive === 0 ? "active" : ''} onClick={() => getEmbark()}>Embark</a></li>
+                                <li key="1"><a href="#" className={nowActive === 1 ? "active" : ''} onClick={() => getNimbus()}>Nimbus</a></li>
                             </ul>
                         </div>
                     </div>

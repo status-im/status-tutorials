@@ -18,7 +18,8 @@ const INITIAL_STATE: IHomePage.IStateProps = {
     },
     nimbusData: {
         data: []
-    }
+    },
+    active: 0
 };
 
 type IMapPayload = IHomePage.Actions.IMapPayload;

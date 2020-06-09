@@ -7,7 +7,7 @@ const path = require("path");
 i18n.use(initReactI18next)
     .use(Backend)
     .init({
-        fallbackLng: "tr",
+        fallbackLng: "en",
         debug: true,
         ns: ["common"],
         interpolation: {

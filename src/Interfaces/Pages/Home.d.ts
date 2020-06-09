@@ -21,17 +21,14 @@ declare namespace IHomePage {
         };
         nimbusData: {
             data: Array<any>;
-        };      
+        };
+        active: Number;
     }
 
     namespace Actions {
         export interface IMapPayload {}
 
         export interface IMapResponse {}
-
-        export interface IGetApodPayload extends PlanetaryModel.GetApodPayload {
-            params: {};
-        }
 
         export interface EmbarkData {
             data: {};

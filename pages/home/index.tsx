@@ -1,7 +1,7 @@
 // #region Global Imports
 import React from "react";
 import { NextPage } from "next";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 // #endregion Global Imports
 
 // #region Local Imports
@@ -19,14 +19,15 @@ import { IHomePage, ReduxNextPageContext } from "@Interfaces";
 
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = () => {
     const home = useSelector((state: IStore) => state.home);
-    const dispatch = useDispatch();
+
+    let active = home.active;
+    console.log(active)
 
     return (
         <>
             <Navbar/>
             <Header/>
-            <Embark/>
-            <Nimbus/>
+            {active === 0 ? <Embark/> : active === 1 ? <Nimbus/> : '' }
         </>
     );
 };

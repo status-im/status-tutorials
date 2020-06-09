@@ -12,10 +12,14 @@ const Embark = () => {
         <>
             <div>Embark</div>
             <div>
-                {embarkData.map((data: { url: string | undefined; title: React.ReactNode; }) => (
-                    <a href={data.url}><div>
-                    {data.title}
-                    </div></a>
+                {embarkData.map((data: { url: string | undefined; title: React.ReactNode; }, i: any) => (
+                    <div key={i}>
+                    <a href={data.url}>
+                        <div>
+                            {data.title}
+                        </div>
+                    </a>
+                </div>
                 ))}
             </div>
         </>
