@@ -11,16 +11,12 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
 
     const getEmbark = () => {
         setNowActive(0)
-        dispatch(
-            HomeActions.Active(nowActive)
-        );
+        dispatch({ type: 'EMBARK' });
     }
 
     const getNimbus = () => {
         setNowActive(1)
-        dispatch(
-            HomeActions.Active(nowActive)
-        );
+        dispatch({ type: 'NIMBUS' });
     }
  
     return (

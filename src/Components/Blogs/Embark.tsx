@@ -6,7 +6,11 @@ const Embark = () => {
     const home = useSelector((state: IStore) => state.home);
     const embarkData: any = home.embarkData
     
-    let loadedAll = embarkData.length !== 0
+    // let loadedAll = embarkData.length !== 0
+    let loadedAll = false;
+    if (embarkData) {
+        loadedAll = embarkData.length !== 0
+    }
 
     return loadedAll ? (
         <>

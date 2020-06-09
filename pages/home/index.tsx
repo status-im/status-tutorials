@@ -21,7 +21,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = () => {
     const home = useSelector((state: IStore) => state.home);
 
     let active = home.active;
-    console.log(active)
+    console.log(home)
 
     return (
         <>

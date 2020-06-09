@@ -4,10 +4,13 @@ import { IStore } from "@Redux/IStore";
 
 const Nimbus = () => {
     const home = useSelector((state: IStore) => state.home);
-    const nimbusData: any = home.nimbusData
+    const nimbusData: any = home.nimbusData;
     
-    let loadedAll = nimbusData.length !== 0
-
+    let loadedAll = false;
+    if (nimbusData) {
+        loadedAll = nimbusData.length !== 0
+    }
+    
     return loadedAll ? (
         <>
             <div>Nimbus</div>
