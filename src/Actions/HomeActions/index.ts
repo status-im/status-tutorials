@@ -133,8 +133,6 @@ export const HomeActions = {
     Active: (activeIndex: any) => async (
         dispatch: Dispatch
     ) => {
-        console.log('hi')
-        console.log(activeIndex)
         await dispatch({
             payload: {
                 active: activeIndex,
