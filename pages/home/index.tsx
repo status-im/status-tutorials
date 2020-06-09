@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { withTranslation } from "@Server/i18n";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
-import { Header, Navbar } from "@Components";
+import { Header, Footer, Navbar } from "@Components";
 import Embark from "../../src/Components/Blogs/Embark"
 import Nimbus from "../../src/Components/Blogs/Nimbus"
 // #endregion Local Imports
@@ -27,6 +27,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = () => {
             <Navbar/>
             <Header/>
             {active === 0 ? <Embark/> : active === 1 ? <Nimbus/> : '' }
+            <Footer/>
         </>
     );
 };

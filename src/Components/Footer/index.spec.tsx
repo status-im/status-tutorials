@@ -7,10 +7,18 @@ import { render } from "@Test/utils";
 import { Footer } from "@Components";
 // #endregion Local Imports
 
-describe("Footer", () => {
-    it("should match snapshot", () => {
-        const { container } = render(<Footer>Test</Footer>);
+describe("Components", () => {
+    describe("Heading", () => {
+        it("should render given text", () => {
+            const { getAllByText } = render(<Heading text="Render Me!" />);
 
-        expect(container).toMatchSnapshot();
+            expect(getAllByText("Render Me!").length).toEqual(2);
+        });
+
+        it("should match snapshot", () => {
+            const { container } = render(<Heading text="Test" />);
+
+            expect(container).toMatchSnapshot();
+        });
     });
 });
