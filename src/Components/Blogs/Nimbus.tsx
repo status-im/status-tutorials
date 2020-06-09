@@ -21,7 +21,7 @@ const Nimbus = () => {
                                 {nimbusData.map((data: { url: string ; title: string; published_at: string; excerpt: string; }, i: any) => (
                                     <li key={i}>
                                         <div className="post">
-                                            <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="#">Nimbus</a></div>
+                                            <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="https://nimbus.team/">Nimbus</a></div>
                                             <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
                                             <div className="author">{data.excerpt}</div>
                                         </div>                                    

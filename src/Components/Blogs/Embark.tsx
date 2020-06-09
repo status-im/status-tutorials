@@ -21,7 +21,7 @@ const Embark = () => {
                                 {embarkData.map((data: { url: string ; title: string ; published: string ; summary: string ; }, i: any) => (
                                     <li key={i}>
                                         <div className="post">
-                                            <div className="meta"><time>{data.published.substring(0,10)}</time> / <a href="#">Embark</a></div>
+                                            <div className="meta"><time>{data.published.substring(0,10)}</time> / <a href="https://framework.embarklabs.io/">Embark</a></div>
                                             <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
                                         </div>                                    
                                     </li>
