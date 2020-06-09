@@ -92,3 +92,29 @@ footer {
     height: 4em;
     margin: 30px auto 30px;
   }
+
+  @media (max-width:1150px) {
+    .social-margin {
+      margin-top: 20px;
+      margin-right: 20px;
+      width: 250px;
+    }
+  
+    .footer-margin {
+      margin-left: 0;
+    }
+  
+    .footer-title {
+      font-size: 24px;
+      text-align: center;
+    }
+    
+    .footer-bottom {
+      margin-left: 30px;
+    }
+  
+    .footer-subtitle {
+      font-size: 20px;
+      margin-left: 20px;
+    }
+  }

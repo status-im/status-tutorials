@@ -192,3 +192,12 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
+
+  @media (max-width:500px) {
+    .logo-container {
+      margin: 25px;
+    }
+    .bm-burger-button {
+      right: 30px;
+    }
+  }
