@@ -1,1 +1,27 @@
 @import "./bootstrap/index";
+
+*:focus {
+    outline: none !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+li {
+    list-style: none;
+}
+
+.pt-150{
+    padding-top: 150px;
+}
+
+.mb-50{
+    margin-bottom: 50px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}

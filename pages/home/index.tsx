@@ -6,18 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 // #region Local Imports
 import { withTranslation } from "@Server/i18n";
-import {
-    Container,
-    Top,
-    TopText,
-    Middle,
-    MiddleLeft,
-    MiddleLeftButtons,
-    MiddleRight,
-} from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
-import { Heading, LocaleButton } from "@Components";
+import { Header, Navbar } from "@Components";
 import Embark from "../../src/Components/Blogs/Embark"
 import Nimbus from "../../src/Components/Blogs/Nimbus"
 // #endregion Local Imports
@@ -31,10 +22,12 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = () => {
     const dispatch = useDispatch();
 
     return (
-        <Container>
+        <>
+            <Navbar/>
+            <Header/>
             <Embark/>
             <Nimbus/>
-        </Container>
+        </>
     );
 };
 
