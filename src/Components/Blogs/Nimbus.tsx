@@ -18,12 +18,12 @@ const Nimbus = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <ul>
-                                {nimbusData.map((data: { url: string | undefined; title: string | undefined; published_at: string | undefined; summary: string | undefined; }, i: any) => (
+                                {nimbusData.map((data: { url: string ; title: string; published_at: string; excerpt: string; }, i: any) => (
                                     <li key={i}>
                                         <div className="post">
-                                            <div className="meta"><time>{data.published_at}</time> / <a href="#">Nimbus</a></div>
-                                            <h4><a href={data.url}>{data.title}</a></h4>
-                                            <div className="author">{data.summary}</div>
+                                            <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="#">Nimbus</a></div>
+                                            <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
+                                            <div className="author">{data.excerpt}</div>
                                         </div>                                    
                                     </li>
                                 ))}

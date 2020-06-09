@@ -18,12 +18,11 @@ const Embark = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <ul>
-                                {embarkData.map((data: { url: string | undefined; title: string | undefined; published: string | undefined; summary: string | undefined; }, i: any) => (
+                                {embarkData.map((data: { url: string ; title: string ; published: string ; summary: string ; }, i: any) => (
                                     <li key={i}>
                                         <div className="post">
-                                            <div className="meta"><time>{data.published}</time> / <a href="#">Embark</a></div>
-                                            <h4><a href={data.url}>{data.title}</a></h4>
-                                            <div className="author">{data.summary}</div>
+                                            <div className="meta"><time>{data.published.substring(0,10)}</time> / <a href="#">Embark</a></div>
+                                            <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
                                         </div>                                    
                                     </li>
                                 ))}

@@ -23,8 +23,8 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
         <section className="intro intro-news">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-12">
-                        <div className="inner pt-150">
+                    <div className="col">
+                        <div className="inner pt-110">
                             <h1 className="mb-50">Tutorials</h1>
                             <h3 className="teaser-1">                        
                                 The Status Network Tutorial Archive

@@ -12,8 +12,8 @@ li {
     list-style: none;
 }
 
-.pt-150{
-    padding-top: 150px;
+.pt-110{
+    padding-top: 110px;
 }
 
 .mb-50{
@@ -25,6 +25,7 @@ li {
         li{
             .post{
                 padding-top: 30px;
+                padding-bottom: 30px;
                 border-bottom: 1px solid #E1E1E1;
             }
         }
@@ -90,6 +91,14 @@ li {
                 }
             }
         }
+    }
+}
+
+.post-title {
+    margin: 10px 0;
+    color: black !important;
+    &:hover{
+        color: #007bff !important;
     }
 }
 
