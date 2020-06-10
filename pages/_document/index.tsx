@@ -40,7 +40,7 @@ class WebAppDocument extends Document {
     render() {
         return (
             <Html>
-                <Head />
+                <Head/>
                 <body>
                     <Main />
                     <NextScript />

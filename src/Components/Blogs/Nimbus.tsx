@@ -10,7 +10,12 @@ const Nimbus = () => {
     if (nimbusData) {
         loadedAll = nimbusData.length !== 0
     }
-    
+
+    const reduceExcerpt = (string: String) => {
+        if (string.length >= 140) 
+        return string.substring(0,140) + '...'
+    }
+
     return loadedAll ? (
         <>
             <section className="news-list">
@@ -23,7 +28,7 @@ const Nimbus = () => {
                                         <div className="post">
                                             <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="https://nimbus.team/">Nimbus</a></div>
                                             <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
-                                            <div className="author">{data.excerpt}</div>
+                                            <div className="author" style={{ paddingRight: '10px' }}>{reduceExcerpt(data.excerpt)}</div>
                                         </div>                                    
                                     </li>
                                 ))}
