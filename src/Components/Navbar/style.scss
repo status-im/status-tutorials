@@ -193,11 +193,22 @@
     display: block;
   }
 
-  @media (max-width:500px) {
-    .logo-container {
-      margin: 25px;
-    }
-    .bm-burger-button {
-      right: 30px;
-    }
+@media (max-width:500px) {
+  .logo-container {
+    margin: 25px;
   }
+  .bm-burger-button {
+    right: 30px;
+  }
+}
+
+@media (max-width:350px) {
+
+  .logo-container {
+    margin: 25px 5px 25px 20px;
+  }
+
+  .bm-burger-button {
+    right: 15px;
+  }
+}

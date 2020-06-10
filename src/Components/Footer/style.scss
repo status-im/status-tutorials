@@ -118,3 +118,27 @@ footer {
       margin-left: 20px;
     }
   }
+
+  @media (max-width:599px) and (min-width:0px) {
+
+    footer {
+        padding: 20px 0;
+        grid-template-columns:1fr;  
+    }
+
+    footer ul li a {
+    font-size: 1.8rem;
+    }
+
+    .footer-title {
+        padding-top: 20px;
+    }
+
+    .footer-margin {
+        margin-left: 4vw;
+    }
+
+    .footer-bottom {
+        margin-top: 30px;
+    }
+  }
