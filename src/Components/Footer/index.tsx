@@ -1,8 +1,7 @@
 import React from "react";
 import "./style.scss";
-import { IFooter } from "./Footer";
 
-const Footer: React.FunctionComponent<IFooter.IProps> = (): JSX.Element => {
+const Footer: React.FunctionComponent = (): JSX.Element => {
  
     return (
         <footer>
