@@ -1,5 +1,7 @@
 ## Status Tutorial
-Status tutorial landing page
+The landing page listing all the tutorial resources of the Status Network.
+
+- https://tutorial.statusnetwork.com/
 
 <br/>
 
@@ -12,13 +14,15 @@ yarn run start:dev
 <br/>
 
 ## Production
+
+Option 1: Local
 ```
 yarn install
 yarn run build
 yarn run start
 ```
 
-Docker
+Option 2: Docker
 ```
 docker build .
 docker run -p 3000:3000 <image_id>
