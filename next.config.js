@@ -7,8 +7,12 @@ const nextRuntimeDotenv = require("next-runtime-dotenv");
 
 const withConfig = nextRuntimeDotenv({ public: ["API_URL", "API_KEY"] });
 
-const nextConfig = {
+// or '' if basePath needs to be left unchanged
+const basePath = '.'; 
+const webpackBasePath = process.env.NODE_ENV = 'production' ? basePath : '';
 
+const nextConfig = {
+    assetPrefix: webpackBasePath,
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),
     analyzeBrowser: ["browser", "both"].includes(process.env.BUNDLE_ANALYZE),
     bundleAnalyzerConfig: {
