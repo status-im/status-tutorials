@@ -16,10 +16,11 @@
     "pretty": "prettier --write --config .prettierrc.json {src,pages,server}/**/*.{ts,tsx}",
     "format": "npm run lint -- --fix",
     "analyze": "cross-env BUNDLE_ANALYZE=both npm run build",
-    "export": "cross-env NODE_ENV=production next export",
+    "export": "cross-env NODE_ENV=production next export && mv ./out/home.html ./out/index.html",
     "cli": "pankod-cli add",
     "storybook": "start-storybook -s ./public/static -p 6006",
-    "build-storybook": "build-storybook -s ./public/static  -c .storybook -o .storybookout"
+    "build-storybook": "build-storybook -s ./public/static  -c .storybook -o .storybookout",
+    "deploy": "node scripts/deploy.js"
   },
   "dependencies": {
     "@types/react-burger-menu": "^2.6.1",
@@ -102,6 +103,7 @@
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "1.x",
     "fork-ts-checker-webpack-plugin": "^4.1.2",
+    "gh-pages": "^3.0.0",
     "jest": "^25.5.3",
     "jest-styled-components": "^6.3.4",
     "nock": "^11.3.5",

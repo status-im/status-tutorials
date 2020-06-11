@@ -30,5 +30,16 @@ docker run -p 3000:3000 <image_id>
 
 <br/>
 
+## Deploy
+Update `org` and `repot` in `/scripts/deploy.js`.
+```
+yarn run build
+yarn run export
+touch out/.nojekyll
+yarn run deploy
+```
+
+<br/>
+
 ## References
 - [Documentation](https://pankod.github.io/next-boilerplate/docs/deployment)
