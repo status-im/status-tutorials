@@ -6,7 +6,7 @@ const ghpublish = promisify(publish)
 process.on('unhandledRejection', err => { throw err })
 
 const branch = 'gh-pages'
-const org = 'jinhojang6'
+const org = 'status-im'
 const repo = 'status-tutorials'
 /* use SSH auth by default */
 const repoUrl = `git@github.com:${org}/${repo}.git`
