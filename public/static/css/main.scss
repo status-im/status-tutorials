@@ -78,10 +78,6 @@ li {
                     background-position: center;
                 }
             }
-            .author{
-                color: grey;
-                font-size: 1rem;
-            }
             h4{
                 margin: 15px 0;
             }
@@ -93,6 +89,23 @@ li {
             }
         }
     }
+}
+
+.author{
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.author-name{
+    display: inline-block;
+    background: #e7e7e7;
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+
+.description{
+    color: grey;
+    font-size: 1rem;
 }
 
 .post-title {

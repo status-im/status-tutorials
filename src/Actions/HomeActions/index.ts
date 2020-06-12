@@ -19,13 +19,22 @@ const CORS_PROXY = "https://cors-fix.status.im/";
 const embarkBlog = "https://blog.embarklabs.io/atom.xml";
 const embarkOldBlog = "https://framework.embarklabs.io/atom.xml";
 
-const nimbusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:nim";
+const nimbusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:nim&limit=all&include=authors";
 
 let embarkData: any = '';
 let parsedEmbarkData:any = [];
 
 let nimbusData: any = '';
 let parsedNimbusData:any = [];
+
+interface NimbusBlog {
+    title: string; 
+    published_at: string; 
+    primary_author: any; 
+    excerpt: string; 
+    feature_image: string; 
+    url: string;
+}
 
 export const FetchEmbark = async () => {
     await fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
@@ -82,16 +91,17 @@ export const FetchNimbus = async () => {
     .then(response => response.json())
     .then(data => {
         nimbusData = data.posts
-        nimbusData.forEach((entry: { title: string; published_at: string; excerpt: string; feature_image: string; url: string; }) => {
+        nimbusData.forEach((entry: NimbusBlog) => {
             const postData: any = {}
             postData.title = entry.title;
             postData.published_at = entry.published_at;
             postData.excerpt = entry.excerpt;
+            postData.author = entry.primary_author.name;
             postData.feature_image = entry.feature_image;
             postData.url = entry.url;
             parsedNimbusData.push(postData);
         })
-    });
+    })
 }
 
 export const HomeActions = {
