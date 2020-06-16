@@ -3976,6 +3976,17 @@ a.active {
   border-radius: 10px;
   display: inline-block; }
 
+@media (max-width: 780px) {
+  .intro-news .inner .filters {
+    margin-top: 60px;
+    display: block;
+    padding-bottom: 40px; }
+    .intro-news .inner .filters li {
+      margin-right: 40px; }
+      .intro-news .inner .filters li a {
+        padding: 10px;
+        font-size: 1rem; } }
+
 @media (max-width: 600px) {
   .intro h1 {
     font-size: 2.8rem;
