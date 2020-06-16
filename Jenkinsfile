@@ -59,7 +59,7 @@ pipeline {
       steps { script {
         sshagent(credentials: ['jenkins-ssh']) {
           sh '''
-            rsync -e 'ssh -o StrictHostKeyChecking=no' -r --delete build/. \
+            rsync -e 'ssh -o StrictHostKeyChecking=no' -r --delete out/. \
             jenkins@node-01.do-ams3.proxy.misc.statusim.net:/var/www/dev-tutorials/
           '''
         }
