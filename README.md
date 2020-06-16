@@ -1,7 +1,7 @@
 ## Status Tutorial
 The landing page listing all the tutorial resources of the Status Network.
 
-- https://tutorial.statusnetwork.com/
+- https://tutorials.statusnetwork.com/
 
 <br/>
 
