@@ -9,14 +9,29 @@ import { withTranslation } from "@Server/i18n";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
 import { Header, Footer, Navbar } from "@Components";
+import Status from "../../src/Components/Blogs/Status"
 import Embark from "../../src/Components/Blogs/Embark"
-import Nimbus from "../../src/Components/Blogs/Nimbus"
 import Subspace from "../../src/Components/Blogs/Subspace"
+import Nimbus from "../../src/Components/Blogs/Nimbus"
+
 // #endregion Local Imports
 
 // #region Interface Imports
 import { IHomePage, ReduxNextPageContext } from "@Interfaces";
 // #endregion Interface Imports
+
+const switchComponent = (active: Number) => {
+    switch (active) {
+        case 0:
+            return <Status/>
+        case 1:
+            return <Embark/>
+        case 2:
+            return <Subspace/>
+        case 3:
+            return <Nimbus/>
+    }
+}
 
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = () => {
     const home = useSelector((state: IStore) => state.home);
@@ -27,7 +42,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = () => {
         <>
             <Navbar/>
             <Header/>
-            {active === 0 ? <Embark/> : active === 1 ? <Nimbus/> : active === 2 ? <Subspace/> : null}
+            {switchComponent(active)}
             <Footer/>
         </>
     );

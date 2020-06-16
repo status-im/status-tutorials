@@ -41,14 +41,14 @@ export const HomeReducer = (
         case ActionConsts.Home.ResetReducer:
             return INITIAL_STATE;
 
-        case "EMBARK":
+        case "STATUS":
             return { 
                 ...state,
                 active: 0
             };
 
-        case "NIMBUS":
-            return {
+        case "EMBARK":
+            return { 
                 ...state,
                 active: 1
             };
@@ -57,6 +57,12 @@ export const HomeReducer = (
             return {
                 ...state,
                 active: 2
+            };
+            
+        case "NIMBUS":
+            return {
+                ...state,
+                active: 3
             };
 
         default:
