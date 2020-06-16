@@ -20,7 +20,8 @@
     "cli": "pankod-cli add",
     "storybook": "start-storybook -s ./public/static -p 6006",
     "build-storybook": "build-storybook -s ./public/static  -c .storybook -o .storybookout",
-    "deploy": "node scripts/deploy.js"
+    "deploy": "node scripts/deploy.js",
+    "clean": "rm -fr out"
   },
   "dependencies": {
     "@types/react-burger-menu": "^2.6.1",
