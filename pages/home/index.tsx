@@ -11,6 +11,7 @@ import { HomeActions } from "@Actions";
 import { Header, Footer, Navbar } from "@Components";
 import Embark from "../../src/Components/Blogs/Embark"
 import Nimbus from "../../src/Components/Blogs/Nimbus"
+import Subspace from "../../src/Components/Blogs/Subspace"
 // #endregion Local Imports
 
 // #region Interface Imports
@@ -26,7 +27,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = () => {
         <>
             <Navbar/>
             <Header/>
-            {active === 0 ? <Embark/> : active === 1 ? <Nimbus/> : '' }
+            {active === 0 ? <Embark/> : active === 1 ? <Nimbus/> : active === 2 ? <Subspace/> : null}
             <Footer/>
         </>
     );
@@ -42,6 +43,11 @@ Home.getInitialProps = async (
     );
     await ctx.store.dispatch(
         HomeActions.GetNimbusData({
+            data: { },
+        })
+    );
+    await ctx.store.dispatch(
+        HomeActions.GetSubspaceData({
             data: { },
         })
     );

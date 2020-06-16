@@ -22,6 +22,9 @@ declare namespace IHomePage {
         nimbusData: {
             data: Array<any>;
         };
+        subspaceData: {
+            data: Array<any>;
+        };
         active: Number;
     }
 
@@ -31,6 +34,14 @@ declare namespace IHomePage {
         export interface IMapResponse {}
 
         export interface EmbarkData {
+            data: {};
+        }
+
+        export interface NimbusData {
+            data: {};
+        }
+
+        export interface SubspaceData {
             data: {};
         }
     }

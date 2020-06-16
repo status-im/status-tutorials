@@ -18,6 +18,11 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
         setNowActive(1)
         dispatch({ type: 'NIMBUS' });
     }
+
+    const getSubspace = () => {
+        setNowActive(2)
+        dispatch({ type: 'SUBSPACE' });
+    }
  
     return (
         <section className="intro intro-news">
@@ -32,6 +37,7 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
                             <ul className="filters">
                                 <li key="0"><a href="#" className={nowActive === 0 ? "active" : ''} onClick={() => getEmbark()}>Embark</a></li>
                                 <li key="1"><a href="#" className={nowActive === 1 ? "active" : ''} onClick={() => getNimbus()}>Nimbus</a></li>
+                                <li key="2"><a href="#" className={nowActive === 2 ? "active" : ''} onClick={() => getSubspace()}>Subspace</a></li>
                             </ul>
                         </div>
                     </div>

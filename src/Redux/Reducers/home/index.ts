@@ -19,6 +19,9 @@ const INITIAL_STATE: IHomePage.IStateProps = {
     nimbusData: {
         data: []
     },
+    subspaceData: {
+        data: []
+    },
     active: 0
 };
 
@@ -48,6 +51,12 @@ export const HomeReducer = (
             return {
                 ...state,
                 active: 1
+            };
+
+        case "SUBSPACE":
+            return {
+                ...state,
+                active: 2
             };
 
         default:
