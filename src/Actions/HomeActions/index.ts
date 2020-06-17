@@ -51,7 +51,7 @@ interface SubspaceBlog {
 }
 
 export const FetchEmbark = async () => {
-    await fetch(`${CORS_PROXY}`+ `${embarkBlog}`)
+    await fetch(`${embarkBlog}`)
     .then(response => response.text())
     .then(data => {
         embarkData = data
@@ -63,16 +63,14 @@ export const FetchEmbark = async () => {
                     const postData: any = {}
                     postData.title = entry.title[0];
                     postData.published = entry.published[0];
+                    postData.author = entry.author[0].name[0];
                     postData.url = entry.id[0];
-                    postData.summary = entry.summary[0]._;
+                    postData.summary = entry.summary[0];
                     parsedEmbarkData.push(postData)
                 }
             })
         });
     })
-    .then(async () => {
-        await FetchOldEmbark();
-    });
 }
 
 export const FetchOldEmbark = async () => {

@@ -9,6 +9,8 @@ const Embark = () => {
     let loadedAll = false;
     if (embarkData) {
         loadedAll = embarkData.length !== 0
+
+        console.log(embarkData)
     }
 
     return loadedAll ? (
@@ -18,11 +20,13 @@ const Embark = () => {
                     <div className="row">
                         <div className="col-md-12">
                             <ul>
-                                {embarkData.map((data: { url: string ; title: string ; published: string ; summary: string ; }, i: any) => (
+                                {embarkData.map((data: { url: string ; title: string ; published: string ; author: string ; summary: string ; }, i: any) => (
                                     <li key={i}>
                                         <div className="post">
                                             <div className="meta"><time>{data.published.substring(0,10)}</time> / <a href="https://framework.embarklabs.io/">Embark</a></div>
                                             <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
+                                            <div className="author" style={{ paddingRight: '10px' }}>By <div className="author-name">{data.author}</div></div>
+                                            <div className="description" style={{ paddingRight: '10px' }}>{data.summary}</div>
                                         </div>                                    
                                     </li>
                                 ))}
