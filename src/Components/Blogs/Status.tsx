@@ -37,7 +37,7 @@ const Status = () => {
                                 {statusData.map((data: { url: string ; title: string; published_at: string; excerpt: string; author: string;}, i: any) => (
                                     <li key={i + 2}>
                                         <div className="post">
-                                            <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="https://nimbus.team/">Nimbus</a></div>
+                                            <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="https://nimbus.team/">Status</a></div>
                                             <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
                                             <div className="author" style={{ paddingRight: '10px' }}>By <div className="author-name">{data.author}</div></div>
                                             <div className="description" style={{ paddingRight: '10px' }}>{data.excerpt}</div>

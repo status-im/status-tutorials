@@ -13,6 +13,9 @@ const INITIAL_STATE: IHomePage.IStateProps = {
     image: {
         url: "",
     },
+    statusData: {
+        data: []
+    },
     embarkData: {
         data: []
     },
