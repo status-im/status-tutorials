@@ -28,8 +28,6 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
         setNowActive(3)
         dispatch({ type: 'NIMBUS' });
     }
-
-
  
     return (
         <section className="intro intro-news">
@@ -42,10 +40,10 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
                                 The Status Network Tutorial Archive
                             </h3>
                             <ul className="filters">
-                                <li key="0"><a href="#" className={nowActive === 0 ? "active" : ''} onClick={() => getStatus()}>Status</a></li>
-                                <li key="1"><a href="#" className={nowActive === 1 ? "active" : ''} onClick={() => getEmbark()}>Embark</a></li>
-                                <li key="2"><a href="#" className={nowActive === 2 ? "active" : ''} onClick={() => getSubspace()}>Subspace</a></li>
-                                <li key="3"><a href="#" className={nowActive === 3 ? "active" : ''} onClick={() => getNimbus()}>Nimbus</a></li>
+                                <li key="0"><a role="button" className={nowActive === 0 ? "active" : ''} onClick={() => getStatus()}>Status</a></li>
+                                <li key="1"><a role="button" className={nowActive === 1 ? "active" : ''} onClick={() => getEmbark()}>Embark</a></li>
+                                <li key="2"><a role="button" className={nowActive === 2 ? "active" : ''} onClick={() => getSubspace()}>Subspace</a></li>
+                                <li key="3"><a role="button" className={nowActive === 3 ? "active" : ''} onClick={() => getNimbus()}>Nimbus</a></li>
                             </ul>
                         </div>
                     </div>
