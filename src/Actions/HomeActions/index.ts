@@ -17,11 +17,15 @@ var parseString = require('xml2js').parseString;
 const CORS_PROXY = "https://cors-fix.status.im/";
 
 const embarkBlog = "https://blog.embarklabs.io/atom.xml";
-const embarkOldBlog = "https://framework.embarklabs.io/atom.xml";
 
-const nimbusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:nim&limit=all&include=authors";
+const statusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:tutorial-status&limit=all&include=authors";
 
-const subspaceBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:subspace&limit=all&include=authors";
+const nimbusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:tutorial-nimbus&limit=all&include=authors";
+
+const subspaceBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:tutorial-subspace&limit=all&include=authors";
+
+let statusData: any = '';
+let parsedStatusData:any = [];
 
 let embarkData: any = '';
 let parsedEmbarkData:any = [];
@@ -31,6 +35,15 @@ let parsedNimbusData:any = [];
 
 let subspaceData: any = '';
 let parsedSubspaceData:any = [];
+
+interface StatusBlog {
+    title: string;
+    published_at: string;
+    primary_author: any;
+    excerpt: string;
+    feature_image: string;
+    url: string;
+}
 
 interface NimbusBlog {
     title: string;
@@ -73,29 +86,22 @@ export const FetchEmbark = async () => {
     })
 }
 
-export const FetchOldEmbark = async () => {
-    await fetch(`${CORS_PROXY}`+ `${embarkOldBlog}`)
-    .then(response => response.text())
+export const FetchStatus = async () => {
+    await fetch(`${CORS_PROXY}`+ `${statusBlog}`)
+    .then(response => response.json())
     .then(data => {
-        embarkData = data
-        parseString(embarkData, function (err:any, result:any) {
-            const entries: Array<any> = result.feed.entry;
-            entries.forEach(entry => {
-                const category = entry.category[0]['$']['term']
-                const title = entry.title[0];
-                const checkDuplicate = title == "How to upgrade to Embark 4" || title == "Introduction to Web3 - What Are Your Options?" || 
-                    title.includes("Nim vs Crystal")
-                if (category === 'tutorials' && !checkDuplicate) {
-                    const postData: any = {}
-                    postData.title = entry.title[0];
-                    postData.published = entry.published[0];
-                    postData.url = entry.id[0];
-                    postData.summary = entry.summary[0]._;
-                    parsedEmbarkData.push(postData)
-                }
-            })
-        });
-    });
+        statusData = data.posts
+        statusData.forEach((entry: StatusBlog) => {
+            const postData: any = {}
+            postData.title = entry.title;
+            postData.published_at = entry.published_at;
+            postData.excerpt = entry.excerpt;
+            postData.author = entry.primary_author.name;
+            postData.feature_image = entry.feature_image;
+            postData.url = entry.url;
+            parsedStatusData.push(postData);
+        })
+    })
 }
 
 export const FetchNimbus = async () => {
@@ -155,6 +161,19 @@ export const HomeActions = {
             type: ActionConsts.Home.SetReducer,
         });
         parsedEmbarkData = []
+    },
+
+    GetStatusData: (payload: IHomePage.Actions.NimbusData) => async (
+        dispatch: Dispatch
+    ) => {
+        await FetchStatus();
+        dispatch({
+            payload: {
+                statusData: parsedStatusData,
+            },
+            type: ActionConsts.Home.SetReducer,
+        });
+        parsedStatusData = []
     },
 
     GetNimbusData: (payload: IHomePage.Actions.NimbusData) => async (

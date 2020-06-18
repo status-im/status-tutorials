@@ -4,7 +4,15 @@ import { IStore } from "@Redux/IStore";
 
 const Status = () => {
 
-    return (
+    const home = useSelector((state: IStore) => state.home);
+    const statusData: any = home.statusData;
+    
+    let loadedAll = false;
+    if (statusData) {
+        loadedAll = statusData.length !== 0
+    }
+
+    return loadedAll ? (
         <>
             <section className="news-list">
                 <div className="container">
@@ -26,21 +34,23 @@ const Status = () => {
                                         <div className="description" style={{ paddingRight: '10px' }}>Status-go is an underlying part of Status depending on go-ethereum which is forked and modified by us.</div>
                                     </div>                         
                                 </li>
-                                <li key="3">
-                                    <div className="post">
-                                        <div className="meta"><a href="https://status.im/">Status</a></div>
-                                        <h4 ><a className="post-title" href="https://our.status.im/reproducable-builds-with-nix/">Reproducible Builds with Nix</a></h4>
-                                        <div className="author" style={{ paddingRight: '10px' }}>By <div className="author-name">Jakub Sokołowski</div></div>
-                                        <div className="description" style={{ paddingRight: '10px' }}>Nix is a tool which uses a subset of Haskel programming language to define the entire tree of software dependencies necessary to manage an entire Linux operating system: NixOS.</div>
-                                    </div>                         
-                                </li>
+                                {statusData.map((data: { url: string ; title: string; published_at: string; excerpt: string; author: string;}, i: any) => (
+                                    <li key={i + 2}>
+                                        <div className="post">
+                                            <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="https://nimbus.team/">Nimbus</a></div>
+                                            <h4 ><a className="post-title" href={data.url}>{data.title}</a></h4>
+                                            <div className="author" style={{ paddingRight: '10px' }}>By <div className="author-name">{data.author}</div></div>
+                                            <div className="description" style={{ paddingRight: '10px' }}>{data.excerpt}</div>
+                                        </div>                                    
+                                    </li>
+                                ))}                                
                             </ul>
                         </div>
                     </div>
                 </div>
             </section>
         </>
-    )
+    ) : null
 }
 
 export default Status;

@@ -50,33 +50,4 @@ describe("Home action tests", () => {
 
         expect(store.getActions()).toEqual(expectedActions);
     });
-
-    test("GetApod test", async () => {
-        const store = mockStore({});
-
-        const expectedActions = [
-            {
-                payload: {
-                    image: {
-                        copyright: "Pankod",
-                        date: "2019-05-23",
-                        explanation: "",
-                        hdurl: "",
-                        media_type: "",
-                        service_version: "",
-                        title: "",
-                        url: "",
-                    },
-                },
-                type: ActionConsts.Home.SetReducer,
-            },
-        ];
-
-        // eslint-disable-next-line
-        await store.dispatch<any>(
-            HomeActions.GetApod({ params: { hd: true } })
-        );
-
-        expect(store.getActions()).toEqual(expectedActions);
-    });
 });

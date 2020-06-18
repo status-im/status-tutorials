@@ -9,8 +9,6 @@ const Embark = () => {
     let loadedAll = false;
     if (embarkData) {
         loadedAll = embarkData.length !== 0
-
-        console.log(embarkData)
     }
 
     return loadedAll ? (

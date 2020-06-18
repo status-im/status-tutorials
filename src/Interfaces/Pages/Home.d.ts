@@ -16,6 +16,9 @@ declare namespace IHomePage {
         image: {
             url: string;
         };
+        statusData: {
+            data: Array<any>;
+        };
         embarkData: {
             data: Array<any>;
         };
@@ -32,6 +35,10 @@ declare namespace IHomePage {
         export interface IMapPayload {}
 
         export interface IMapResponse {}
+
+        export interface StatusData {
+            data: {};
+        }
 
         export interface EmbarkData {
             data: {};

@@ -57,6 +57,11 @@ Home.getInitialProps = async (
         })
     );
     await ctx.store.dispatch(
+        HomeActions.GetStatusData({
+            data: { },
+        })
+    );
+    await ctx.store.dispatch(
         HomeActions.GetNimbusData({
             data: { },
         })
