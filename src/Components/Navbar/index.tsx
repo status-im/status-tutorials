@@ -16,7 +16,7 @@ const Navbar: React.FunctionComponent<INavbar.IProps> = (): JSX.Element => {
         <>
             <nav id="nav">
                 <div className='logo-container' >
-                    <a href=".">
+                    <a href="https://statusnetwork.com/">
                        <StatusNetwork/>
                     </a>
                 </div >
