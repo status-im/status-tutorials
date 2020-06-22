@@ -116,6 +116,30 @@ li {
     }
 }
 
+.search-bar {
+    margin-top: 20px;
+    margin-left: 25px;
+    width: 220px;
+    height: 30px;
+    border: 2px solid #979797;
+    padding: 5px 5px 5px 15px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    color: #e7e7e7;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #b4b4b4;
+    padding-left: 2px;
+    opacity: 1; /* Firefox */
+  }
+  
+.search-bar:focus{
+color: #666666;
+
+}
+
 @media (min-width: 1200px) {
     .container {
         max-width: 1140px;
