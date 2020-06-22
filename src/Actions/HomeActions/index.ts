@@ -87,9 +87,24 @@ export const FetchEmbark = async () => {
 }
 
 export const FetchStatus = async () => {
+    const quickStart: any = {
+        title: 'Status-React Quickstart Guide',
+        author: 'robin_percy',
+        excerpt: 'Build Status-react on your machine.',
+        url: 'https://status.im/technical/build_status/status_react_quickstart.html',
+    }
+    const buildStatusGo: any = {
+        title: 'Build Status-Go',
+        author: '',
+        excerpt: 'Status-go is an underlying part of Status depending on go-ethereum which is forked and modified by us.',
+        url: 'https://status.im/technical/build_status/status_go.html',
+    }
+    parsedStatusData.push(quickStart);
+    parsedStatusData.push(buildStatusGo);
     await fetch(`${CORS_PROXY}`+ `${statusBlog}`)
     .then(response => response.json())
     .then(data => {
+
         statusData = data.posts
         statusData.forEach((entry: StatusBlog) => {
             const postData: any = {}
@@ -148,6 +163,11 @@ export const HomeActions = {
 
     Reset: () => ({
         type: ActionConsts.Home.ResetReducer,
+    }),
+
+    Search: (text: String) => ({
+        type: 'SEARCH',
+        payload: text,
     }),
 
     GetEmbarkData: (payload: IHomePage.Actions.EmbarkData) => async (

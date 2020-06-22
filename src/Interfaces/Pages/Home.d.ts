@@ -29,6 +29,7 @@ declare namespace IHomePage {
             data: Array<any>;
         };
         active: Number;
+        searchKeyword: string;
     }
 
     namespace Actions {

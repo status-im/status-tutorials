@@ -1,15 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { IStore } from "@Redux/IStore";
+import SearchBox from "./SearchBox";
+import { filterData } from "./utils";
 
 const Nimbus = () => {
     const home = useSelector((state: IStore) => state.home);
     const nimbusData: any = home.nimbusData;
+    const keyword: string = home.searchKeyword;
     
     let loadedAll = false;
     if (nimbusData) {
         loadedAll = nimbusData.length !== 0
     }
+
+    let filteredData = filterData(nimbusData, keyword)
 
     const reduceExcerpt = (string: String) => {
         if (string.length >= 140) 
@@ -22,8 +27,9 @@ const Nimbus = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
+                            <SearchBox/>
                             <ul>
-                                {nimbusData.map((data: { url: string ; title: string; published_at: string; excerpt: string; author: string;}, i: any) => (
+                                {filteredData.map((data: { url: string ; title: string; published_at: string; excerpt: string; author: string;}, i: any) => (
                                     <li key={i}>
                                         <div className="post">
                                             <div className="meta"><time>{data.published_at.substring(0,10)}</time> / <a href="https://nimbus.team/">Nimbus</a></div>

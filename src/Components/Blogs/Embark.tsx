@@ -1,15 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { IStore } from "@Redux/IStore";
+import SearchBox from "./SearchBox";
+import { filterData } from "./utils";
 
 const Embark = () => {
     const home = useSelector((state: IStore) => state.home);
-    const embarkData: any = home.embarkData
+    const embarkData: any = home.embarkData;
+    const keyword: string = home.searchKeyword;
     
     let loadedAll = false;
     if (embarkData) {
         loadedAll = embarkData.length !== 0
     }
+
+    let filteredData = filterData(embarkData, keyword)
 
     return loadedAll ? (
         <>
@@ -17,8 +22,9 @@ const Embark = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
+                            <SearchBox/>
                             <ul>
-                                {embarkData.map((data: { url: string ; title: string ; published: string ; author: string ; summary: string ; }, i: any) => (
+                                {filteredData.map((data: { url: string ; title: string ; published: string ; author: string ; summary: string ; }, i: any) => (
                                     <li key={i}>
                                         <div className="post">
                                             <div className="meta"><time>{data.published.substring(0,10)}</time> / <a href="https://framework.embarklabs.io/">Embark</a></div>

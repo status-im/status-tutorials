@@ -25,7 +25,8 @@ const INITIAL_STATE: IHomePage.IStateProps = {
     subspaceData: {
         data: []
     },
-    active: 0
+    active: 0,
+    searchKeyword: '',
 };
 
 type IMapPayload = IHomePage.Actions.IMapPayload;
@@ -66,6 +67,12 @@ export const HomeReducer = (
             return {
                 ...state,
                 active: 3
+            };
+
+        case "SEARCH":
+            return {
+                ...state,
+                searchKeyword: action.payload,
             };
 
         default:
