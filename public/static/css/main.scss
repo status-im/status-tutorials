@@ -117,8 +117,7 @@ li {
 }
 
 .search-bar {
-    margin-top: 20px;
-    margin-left: 25px;
+    margin-left: 15px;
     width: 220px;
     height: 30px;
     border: 2px solid #979797;
@@ -127,6 +126,11 @@ li {
     border-radius: 5px;
     outline: none;
     color: #e7e7e7;
+}
+
+.searchIcon {
+    margin-left: 25px;
+    font-size: 25px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

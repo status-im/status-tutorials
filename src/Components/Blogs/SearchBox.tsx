@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { HomeActions } from "@Actions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const SearchBox = (data: any) => {
 
@@ -17,15 +19,22 @@ const SearchBox = (data: any) => {
 
     return (
         <>
-          <div>
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Author or title.."
-              onChange={handleChange}
-            >
-            </input>
-          </div>
+            <div style={{ display: 'inline-flex', alignItems: 'center', marginTop: '25px', marginBottom: '10px' }}>
+              <div>
+                <FontAwesomeIcon icon={faSearch} color="grey" className="searchIcon"/>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  className="search-bar"
+                  placeholder="Author or title.."
+                  onChange={handleChange}
+                >
+                </input>
+              </div>
+            </div>
+          
+
         </>
     )
 }
