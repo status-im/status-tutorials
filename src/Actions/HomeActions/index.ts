@@ -68,6 +68,15 @@ interface SubspaceBlog {
     url: string;
 }
 
+interface KeycardBlog {
+    title: string;
+    published_at: string;
+    primary_author: any;
+    excerpt: string;
+    feature_image: string;
+    url: string;
+}
+
 export const FetchEmbark = async () => {
     await fetch(`${embarkBlog}`)
     .then(response => response.text())
@@ -165,7 +174,7 @@ export const FetchKeycard = async () => {
     .then(response => response.json())
     .then(data => {
         keycardData = data.posts
-        keycardData.forEach((entry: keycardBlog) => {
+        keycardData.forEach((entry: KeycardBlog) => {
             const postData: any = {}
             postData.title = entry.title;
             postData.published_at = entry.published_at;
