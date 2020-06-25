@@ -28,6 +28,9 @@ declare namespace IHomePage {
         subspaceData: {
             data: Array<any>;
         };
+        keycardData: {
+            data: Array<any>;
+        };
         active: Number;
         searchKeyword: string;
     }
@@ -50,6 +53,10 @@ declare namespace IHomePage {
         }
 
         export interface SubspaceData {
+            data: {};
+        }
+
+        export interface KeycardData {
             data: {};
         }
     }

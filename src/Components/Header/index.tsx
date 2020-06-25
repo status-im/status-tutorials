@@ -28,6 +28,11 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
         setNowActive(3)
         dispatch({ type: 'NIMBUS' });
     }
+
+    const getKeycard = () => {
+        setNowActive(4)
+        dispatch({ type: 'KEYCARD' });
+    }
  
     return (
         <section className="intro intro-news">
@@ -44,6 +49,7 @@ const Header: React.FunctionComponent<IHeading.IProps> = (): JSX.Element => {
                                 <li key="1"><a role="button" className={nowActive === 1 ? "active" : ''} onClick={() => getEmbark()}>Embark</a></li>
                                 <li key="2"><a role="button" className={nowActive === 2 ? "active" : ''} onClick={() => getSubspace()}>Subspace</a></li>
                                 <li key="3"><a role="button" className={nowActive === 3 ? "active" : ''} onClick={() => getNimbus()}>Nimbus</a></li>
+                                <li key="4"><a role="button" className={nowActive === 4 ? "active" : ''} onClick={() => getKeycard()}>Keycard</a></li>
                             </ul>
                         </div>
                     </div>

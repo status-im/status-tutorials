@@ -13,6 +13,7 @@ import Status from "../../src/Components/Blogs/Status"
 import Embark from "../../src/Components/Blogs/Embark"
 import Subspace from "../../src/Components/Blogs/Subspace"
 import Nimbus from "../../src/Components/Blogs/Nimbus"
+import Keycard from "../../src/Components/Blogs/Keycard"
 
 // #endregion Local Imports
 
@@ -30,6 +31,8 @@ const switchComponent = (active: Number) => {
             return <Subspace/>
         case 3:
             return <Nimbus/>
+        case 4:
+            return <Keycard/>
     }
 }
 
@@ -68,6 +71,11 @@ Home.getInitialProps = async (
     );
     await ctx.store.dispatch(
         HomeActions.GetSubspaceData({
+            data: { },
+        })
+    );
+    await ctx.store.dispatch(
+        HomeActions.GetKeycardData({
             data: { },
         })
     );

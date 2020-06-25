@@ -25,6 +25,9 @@ const INITIAL_STATE: IHomePage.IStateProps = {
     subspaceData: {
         data: []
     },
+    keycardData: {
+        data: []
+    },
     active: 0,
     searchKeyword: '',
 };
@@ -67,6 +70,12 @@ export const HomeReducer = (
             return {
                 ...state,
                 active: 3
+            };
+
+        case "KEYCARD":
+            return {
+                ...state,
+                active: 4
             };
 
         case "SEARCH":

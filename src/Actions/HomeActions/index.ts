@@ -24,6 +24,8 @@ const nimbusBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8
 
 const subspaceBlog = "https://our.status.im/ghost/api/v2/content/posts/?key=10e7f8c1f793d2945ea1177076&filter=tag:tutorial-subspace&limit=all&include=authors";
 
+const keycardBlog = "https://news.keycard.tech//ghost/api/v2/content/posts/?key=d7ad0ac3484bdf01fadf32b59c&filter=tag:tutorial-keycard&limit=all&include=authors";
+
 let statusData: any = '';
 let parsedStatusData:any = [];
 
@@ -35,6 +37,9 @@ let parsedNimbusData:any = [];
 
 let subspaceData: any = '';
 let parsedSubspaceData:any = [];
+
+let keycardData: any = '';
+let parsedKeycardData:any = [];
 
 interface StatusBlog {
     title: string;
@@ -155,6 +160,24 @@ export const FetchSubspace = async () => {
     })
 }
 
+export const FetchKeycard = async () => {
+    await fetch(`${CORS_PROXY}`+ `${keycardBlog}`)
+    .then(response => response.json())
+    .then(data => {
+        keycardData = data.posts
+        keycardData.forEach((entry: keycardBlog) => {
+            const postData: any = {}
+            postData.title = entry.title;
+            postData.published_at = entry.published_at;
+            postData.excerpt = entry.excerpt;
+            postData.author = entry.primary_author.name;
+            postData.feature_image = entry.feature_image;
+            postData.url = entry.url;
+            parsedKeycardData.push(postData);
+        })
+    })
+}
+
 export const HomeActions = {
     Map: (payload: {}) => ({
         payload,
@@ -220,6 +243,23 @@ export const HomeActions = {
             },
             type: ActionConsts.Home.SetReducer,
         });
+
+        parsedSubspaceData = []
+    },
+
+    GetKeycardData: (payload: IHomePage.Actions.KeycardData) => async (
+        dispatch: Dispatch
+    ) => {
+        await FetchKeycard();
+
+        dispatch({
+            payload: {
+                keycardData: parsedKeycardData,
+            },
+            type: ActionConsts.Home.SetReducer,
+        });
+
+        parsedKeycardData = []
     },
 
     Active: (activeIndex: any) => async (
